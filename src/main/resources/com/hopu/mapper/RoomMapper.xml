@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hopu.mapper.RoomMapper">
+  <resultMap id="BaseResultMap" type="com.hopu.pojo.Room">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="rent" jdbcType="INTEGER" property="rent" />
+    <result column="room_type" jdbcType="VARCHAR" property="roomType" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="region_id" jdbcType="INTEGER" property="regionId" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="detail_address" jdbcType="VARCHAR" property="detailAddress" />
+    <result column="area" jdbcType="DOUBLE" property="area" />
+    <result column="rent_type" jdbcType="VARCHAR" property="rentType" />
+    <result column="traffic_condition" jdbcType="VARCHAR" property="trafficCondition" />
+    <result column="facilities_condition" jdbcType="VARCHAR" property="facilitiesCondition" />
+    <result column="room_desc" jdbcType="VARCHAR" property="roomDesc" />
+    <result column="rent_status" jdbcType="BIT" property="rentStatus" />
+    <result column="rent_user_id" jdbcType="INTEGER" property="rentUserId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, title, rent, room_type, user_id, region_id, address, detail_address, area, rent_type, 
+    traffic_condition, facilities_condition, room_desc, rent_status, rent_user_id, create_time, 
+    update_time
+  </sql>
+  <select id="selectByExample" parameterType="com.hopu.pojo.RoomExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_room
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_room
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_room
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hopu.pojo.RoomExample">
+    delete from t_room
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hopu.pojo.Room">
+    insert into t_room (id, title, rent, 
+      room_type, user_id, region_id, 
+      address, detail_address, area, 
+      rent_type, traffic_condition, facilities_condition, 
+      room_desc, rent_status, rent_user_id, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{rent,jdbcType=INTEGER}, 
+      #{roomType,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{regionId,jdbcType=INTEGER}, 
+      #{address,jdbcType=VARCHAR}, #{detailAddress,jdbcType=VARCHAR}, #{area,jdbcType=DOUBLE}, 
+      #{rentType,jdbcType=VARCHAR}, #{trafficCondition,jdbcType=VARCHAR}, #{facilitiesCondition,jdbcType=VARCHAR}, 
+      #{roomDesc,jdbcType=VARCHAR}, #{rentStatus,jdbcType=BIT}, #{rentUserId,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hopu.pojo.Room">
+    insert into t_room
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="rent != null">
+        rent,
+      </if>
+      <if test="roomType != null">
+        room_type,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="regionId != null">
+        region_id,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="detailAddress != null">
+        detail_address,
+      </if>
+      <if test="area != null">
+        area,
+      </if>
+      <if test="rentType != null">
+        rent_type,
+      </if>
+      <if test="trafficCondition != null">
+        traffic_condition,
+      </if>
+      <if test="facilitiesCondition != null">
+        facilities_condition,
+      </if>
+      <if test="roomDesc != null">
+        room_desc,
+      </if>
+      <if test="rentStatus != null">
+        rent_status,
+      </if>
+      <if test="rentUserId != null">
+        rent_user_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="rent != null">
+        #{rent,jdbcType=INTEGER},
+      </if>
+      <if test="roomType != null">
+        #{roomType,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="regionId != null">
+        #{regionId,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="detailAddress != null">
+        #{detailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=DOUBLE},
+      </if>
+      <if test="rentType != null">
+        #{rentType,jdbcType=VARCHAR},
+      </if>
+      <if test="trafficCondition != null">
+        #{trafficCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="facilitiesCondition != null">
+        #{facilitiesCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="roomDesc != null">
+        #{roomDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="rentStatus != null">
+        #{rentStatus,jdbcType=BIT},
+      </if>
+      <if test="rentUserId != null">
+        #{rentUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hopu.pojo.RoomExample" resultType="java.lang.Long">
+    select count(*) from t_room
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_room
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rent != null">
+        rent = #{record.rent,jdbcType=INTEGER},
+      </if>
+      <if test="record.roomType != null">
+        room_type = #{record.roomType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.regionId != null">
+        region_id = #{record.regionId,jdbcType=INTEGER},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.detailAddress != null">
+        detail_address = #{record.detailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.area != null">
+        area = #{record.area,jdbcType=DOUBLE},
+      </if>
+      <if test="record.rentType != null">
+        rent_type = #{record.rentType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.trafficCondition != null">
+        traffic_condition = #{record.trafficCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facilitiesCondition != null">
+        facilities_condition = #{record.facilitiesCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roomDesc != null">
+        room_desc = #{record.roomDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rentStatus != null">
+        rent_status = #{record.rentStatus,jdbcType=BIT},
+      </if>
+      <if test="record.rentUserId != null">
+        rent_user_id = #{record.rentUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_room
+    set id = #{record.id,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=VARCHAR},
+      rent = #{record.rent,jdbcType=INTEGER},
+      room_type = #{record.roomType,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      region_id = #{record.regionId,jdbcType=INTEGER},
+      address = #{record.address,jdbcType=VARCHAR},
+      detail_address = #{record.detailAddress,jdbcType=VARCHAR},
+      area = #{record.area,jdbcType=DOUBLE},
+      rent_type = #{record.rentType,jdbcType=VARCHAR},
+      traffic_condition = #{record.trafficCondition,jdbcType=VARCHAR},
+      facilities_condition = #{record.facilitiesCondition,jdbcType=VARCHAR},
+      room_desc = #{record.roomDesc,jdbcType=VARCHAR},
+      rent_status = #{record.rentStatus,jdbcType=BIT},
+      rent_user_id = #{record.rentUserId,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hopu.pojo.Room">
+    update t_room
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="rent != null">
+        rent = #{rent,jdbcType=INTEGER},
+      </if>
+      <if test="roomType != null">
+        room_type = #{roomType,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="regionId != null">
+        region_id = #{regionId,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="detailAddress != null">
+        detail_address = #{detailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        area = #{area,jdbcType=DOUBLE},
+      </if>
+      <if test="rentType != null">
+        rent_type = #{rentType,jdbcType=VARCHAR},
+      </if>
+      <if test="trafficCondition != null">
+        traffic_condition = #{trafficCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="facilitiesCondition != null">
+        facilities_condition = #{facilitiesCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="roomDesc != null">
+        room_desc = #{roomDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="rentStatus != null">
+        rent_status = #{rentStatus,jdbcType=BIT},
+      </if>
+      <if test="rentUserId != null">
+        rent_user_id = #{rentUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hopu.pojo.Room">
+    update t_room
+    set title = #{title,jdbcType=VARCHAR},
+      rent = #{rent,jdbcType=INTEGER},
+      room_type = #{roomType,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      region_id = #{regionId,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      detail_address = #{detailAddress,jdbcType=VARCHAR},
+      area = #{area,jdbcType=DOUBLE},
+      rent_type = #{rentType,jdbcType=VARCHAR},
+      traffic_condition = #{trafficCondition,jdbcType=VARCHAR},
+      facilities_condition = #{facilitiesCondition,jdbcType=VARCHAR},
+      room_desc = #{roomDesc,jdbcType=VARCHAR},
+      rent_status = #{rentStatus,jdbcType=BIT},
+      rent_user_id = #{rentUserId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
