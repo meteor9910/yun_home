@@ -1,41 +1,50 @@
 package com.hopu.pojo;
 
-import java.util.Date;
+import com.hopu.pojo.Region;
+import com.hopu.pojo.User;
 
-public class Room {
+import java.io.Serializable;
+import java.util.List;
+
+
+public class Room  implements Serializable {
     private Integer id;
+    private String title; // 房屋发布标题
+    private Double rent; // 房屋发布租金
+    private String roomType; // 房型（ 一室 二室 三室 四室 五室及以上）
+    private Integer userId;  // 所属房东编号
+    private Integer regionId;  // 对应所在区域
+    private String address;   // 房源地址
+    private String detailAddress;   // 房源详细地址
+    private String rentType;  // 出租方式：整租、合租
+    private Double area;  // 房屋面积
+    private String trafficCondition; // 交通情况
+    private String facilitiesCondition; // 房屋设备情况
+    private String roomDesc;  // 房屋描述
+    private Integer rentStatus;  // 房屋出租状态。0：待出租；1：已出租；-1：未审核
+    private Integer rentUserId;  // 房屋租户id，null表示还未出租
 
-    private String title;
+    private User user;
+    private User rentUser;
+    private Region region;
+    private List<RoomImg> roomImgList;
 
-    private Integer rent;
 
-    private String roomType;
+    public User getRentUser() {
+        return rentUser;
+    }
 
-    private Integer userId;
+    public void setRentUser(User rentUser) {
+        this.rentUser = rentUser;
+    }
 
-    private Integer regionId;
+    public Double getArea() {
+        return area;
+    }
 
-    private String address;
-
-    private String detailAddress;
-
-    private Double area;
-
-    private String rentType;
-
-    private String trafficCondition;
-
-    private String facilitiesCondition;
-
-    private String roomDesc;
-
-    private Boolean rentStatus;
-
-    private Integer rentUserId;
-
-    private Date createTime;
-
-    private Date updateTime;
+    public void setArea(Double area) {
+        this.area = area;
+    }
 
     public Integer getId() {
         return id;
@@ -50,23 +59,24 @@ public class Room {
     }
 
     public void setTitle(String title) {
-        this.title = title == null ? null : title.trim();
+        this.title = title;
     }
 
-    public Integer getRent() {
+    public Double getRent() {
         return rent;
     }
 
-    public void setRent(Integer rent) {
+    public void setRent(Double rent) {
         this.rent = rent;
     }
+
 
     public String getRoomType() {
         return roomType;
     }
 
     public void setRoomType(String roomType) {
-        this.roomType = roomType == null ? null : roomType.trim();
+        this.roomType = roomType;
     }
 
     public Integer getUserId() {
@@ -90,7 +100,7 @@ public class Room {
     }
 
     public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
+        this.address = address;
     }
 
     public String getDetailAddress() {
@@ -98,15 +108,7 @@ public class Room {
     }
 
     public void setDetailAddress(String detailAddress) {
-        this.detailAddress = detailAddress == null ? null : detailAddress.trim();
-    }
-
-    public Double getArea() {
-        return area;
-    }
-
-    public void setArea(Double area) {
-        this.area = area;
+        this.detailAddress = detailAddress;
     }
 
     public String getRentType() {
@@ -114,7 +116,7 @@ public class Room {
     }
 
     public void setRentType(String rentType) {
-        this.rentType = rentType == null ? null : rentType.trim();
+        this.rentType = rentType;
     }
 
     public String getTrafficCondition() {
@@ -122,7 +124,7 @@ public class Room {
     }
 
     public void setTrafficCondition(String trafficCondition) {
-        this.trafficCondition = trafficCondition == null ? null : trafficCondition.trim();
+        this.trafficCondition = trafficCondition;
     }
 
     public String getFacilitiesCondition() {
@@ -130,7 +132,7 @@ public class Room {
     }
 
     public void setFacilitiesCondition(String facilitiesCondition) {
-        this.facilitiesCondition = facilitiesCondition == null ? null : facilitiesCondition.trim();
+        this.facilitiesCondition = facilitiesCondition;
     }
 
     public String getRoomDesc() {
@@ -138,14 +140,14 @@ public class Room {
     }
 
     public void setRoomDesc(String roomDesc) {
-        this.roomDesc = roomDesc == null ? null : roomDesc.trim();
+        this.roomDesc = roomDesc;
     }
 
-    public Boolean getRentStatus() {
+    public Integer getRentStatus() {
         return rentStatus;
     }
 
-    public void setRentStatus(Boolean rentStatus) {
+    public void setRentStatus(Integer rentStatus) {
         this.rentStatus = rentStatus;
     }
 
@@ -157,19 +159,49 @@ public class Room {
         this.rentUserId = rentUserId;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public User getUser() {
+        return user;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Date getUpdateTime() {
-        return updateTime;
+    public Region getRegion() {
+        return region;
     }
 
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
+    public void setRegion(Region region) {
+        this.region = region;
+    }
+
+    public List<RoomImg> getRoomImgList() {
+        return roomImgList;
+    }
+
+    public void setRoomImgList(List<RoomImg> roomImgList) {
+        this.roomImgList = roomImgList;
+    }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", rent=" + rent +
+                ", roomType='" + roomType + '\'' +
+                ", userId=" + userId +
+                ", regionId=" + regionId +
+                ", address='" + address + '\'' +
+                ", detailAddress='" + detailAddress + '\'' +
+                ", rentType='" + rentType + '\'' +
+                ", trafficCondition='" + trafficCondition + '\'' +
+                ", facilitiesCondition='" + facilitiesCondition + '\'' +
+                ", roomDesc='" + roomDesc + '\'' +
+                ", rentStatus='" + rentStatus + '\'' +
+                ", user=" + user +
+                ", region=" + region +
+                ", roomImgList=" + roomImgList +
+                '}';
     }
 }
