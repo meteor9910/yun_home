@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -5,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
+    <script src="${pageContext.request.contextPath}/js/jquery-3.4.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 
 
     <title>云租房+-首页</title>
@@ -34,10 +35,18 @@
             </div>
         </div>
         <div class="bar_right">
-            <div id="commonTopbar_login"><a
-                    href="${pageContext.request.contextPath}/user/toLoginPage"
-                    target="_self" tongji_tag="pc_topbar_log_login">登录</a><span class="gap">|</span><a
-                    href="${pageContext.request.contextPath}/user/toRegisterPage" >注册</a></div>
+            <c:if test="${empty loginUser}">
+                <div id="commonTopbar_login">
+                    <a href="${pageContext.request.contextPath}/user/toLoginPage" target="_self" tongji_tag="pc_topbar_log_login">登录</a><span class="gap">|</span>
+                    <a href="${pageContext.request.contextPath}/user/toRegisterPage" >注册</a>
+                </div>
+            </c:if>
+            <c:if test="${!empty loginUser}">
+                <div id="commonTopbar_login">
+                    <a href="javascript:void(0)" target="_self" tongji_tag="pc_topbar_log_login">${loginUser.username}</a><span class="gap">|</span>
+                    <a href="${pageContext.request.contextPath}/user/logout" >退出</a>
+                </div>
+            </c:if>
             <div id="commonTopbar_mymenu" class="haschild"><a id="commonTopbar_tomy" target="_blank"
                                                               href="javascript:void(0)"
                                                               tongji_tag="pc_topbar_log_my">个人中心</a><span
@@ -110,41 +119,41 @@
 </div>
 <%-- 2、轮播图--%>
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-<!-- Indicators -->
-<ol class="carousel-indicators">
-    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-</ol>
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+    </ol>
 
-<!-- Wrapper for slides -->
-<div class="carousel-inner" role="listbox">
-    <div class="item active">
-        <img src="index/img/1.jpg" alt="">
-        <div class="carousel-caption">
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img src="index/img/1.jpg" alt="">
+            <div class="carousel-caption">
+            </div>
+        </div>
+        <div class="item">
+            <img src="index/img/2.jpg" alt="">
+            <div class="carousel-caption">
+            </div>
+        </div>
+        <div class="item">
+            <img src="index/img/3.jpg" alt="">
+            <div class="carousel-caption">
+            </div>
         </div>
     </div>
-    <div class="item">
-        <img src="index/img/2.jpg" alt="">
-        <div class="carousel-caption">
-        </div>
-    </div>
-    <div class="item">
-        <img src="index/img/3.jpg" alt="">
-        <div class="carousel-caption">
-        </div>
-    </div>
-</div>
 
-<!-- Controls -->
-<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-</a>
-<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-</a>
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
 </div>
 
 <%--  3、尾部--%>

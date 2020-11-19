@@ -14,4 +14,10 @@ public interface UserService {
     void update(User user);
 
     void deleteById(Integer id);
+
+    void sendSMSCode(String telephone);
+
+    User findByUserName(String userName);
+
+    User login(User user);
 }

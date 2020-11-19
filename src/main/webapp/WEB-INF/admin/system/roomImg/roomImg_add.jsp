@@ -37,7 +37,9 @@
             <div class="panel-heading">房屋图片信息</div>
             <form id="editForm" action="${ctx}/admin/roomImg/add" method="post" enctype="multipart/form-data">
                 <div class="row data-type" style="margin: 0px">
-                    <div class="col-md-4 title">图片所属房源</div>
+                    <div class="col-md-4 title">
+                        图片所属房源
+                    </div>
                     <div class="col-md-8 data">
                         <select class="form-control" name="roomId">
                             <c:forEach items="${rooms}" var="room">

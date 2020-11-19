@@ -2,10 +2,7 @@ package com.hopu.mapper;
 
 import com.hopu.pojo.Room;
 import com.hopu.pojo.RoomImg;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -18,5 +15,15 @@ public interface RoomImgMapper {
 
     @Delete("DELETE FROM t_room_img WHERE room_id =#{id}")
     void deleteByRoomId(Integer id);
+
+    List<RoomImg> findAll();
+
+    @Select("SELECT * FROM t_room_img WHERE id =#{id}")
+    RoomImg fingById(Integer id);
+
+    @Delete("DELETE FROM t_room_img WHERE id =#{id}")
+    void delete(Integer id);
+
+
 
 }

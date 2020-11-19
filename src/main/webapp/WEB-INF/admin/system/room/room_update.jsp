@@ -36,6 +36,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">房屋信息</div>
             <form id="editForm" action="${ctx}/admin/room/update" method="post">
+                <input type="hidden" value="${room.id}" name="id">
                 <div class="row data-type" style="margin: 0px">
                     <div class="col-md-2 title">房屋修改标题</div>
                     <div class="col-md-4 data">

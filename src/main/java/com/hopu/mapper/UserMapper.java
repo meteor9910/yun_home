@@ -5,6 +5,7 @@ import com.hopu.pojo.User;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 public interface UserMapper {
@@ -23,4 +24,8 @@ public interface UserMapper {
 
     @Delete("DELETE FROM t_user WHERE id=#{id}")
     void deleteById(Integer id);
+
+
+    @Select("SELECT * FROM t_user WHERE username= #{username} AND password =#{password}")
+    User findUserByNameAndPWD(@Param("username") String username, @Param("password") String password);
 }

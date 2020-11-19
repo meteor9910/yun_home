@@ -66,6 +66,7 @@
                                 <th class="sorting" style="width: 50px">所属房屋编号</th>
                                 <th class="sorting" style="width: 150px">房屋标题</th>
                                 <th class="sorting" style="width: 250px;">图片</th>
+                                <th class="text-center" style="width: 50px">操作</th>
 
                             </tr>
                             </thead>
@@ -76,6 +77,9 @@
                                     <td><a href="/system/user/toUpdate?id=${item.id}">${item.room.id}</a></td>
                                     <td>${item.room.title}</td>
                                     <td><img style="width: 150px;" src="http://localhost/${item.img}" alt=""></td>
+                                    <th class="text-center">
+                                        <button style="margin-bottom: 10px" type="button" class="btn btn-success" onclick='location.href="${pageContext.request.contextPath}/admin/roomImg/toUpdatePage?roomImgId=${item.id}"'>编辑</button>
+                                    </th>
 
                                 </tr>
                             </c:forEach>
