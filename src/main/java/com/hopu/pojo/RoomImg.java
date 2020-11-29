@@ -7,7 +7,7 @@ public class RoomImg implements Serializable {
     private Integer roomId; // 对应房屋编号
     private String img; // 房屋图片地址
     private Room room;
-    private RoomImg roomImg;
+
 
 
     public RoomImg(Integer id, Integer roomId, String img, Room room) {

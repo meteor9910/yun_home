@@ -2,7 +2,7 @@ package com.hopu.pojo;
 
 import java.util.Date;
 
-public class Favorites {
+public class Favorite {
     private Long id;
 
     private Integer roomId;

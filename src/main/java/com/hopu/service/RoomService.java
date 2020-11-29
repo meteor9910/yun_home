@@ -17,4 +17,7 @@ public interface RoomService {
     void delete(Integer id);
 
     void updateRoomRentStatus(Integer id, int rentStatus);
+
+    //前台相关接口写法
+    PageInfo<Room> findPageFront(Integer pageNum, Integer pageSize,Integer regionId,String rent);
 }

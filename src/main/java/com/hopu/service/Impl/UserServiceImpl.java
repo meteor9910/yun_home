@@ -72,8 +72,8 @@ public class UserServiceImpl implements UserService {
         SmsUtil.sendSms(telephone, code);
         // 3、发送成，就直接讲验证码存入Redis中
         RedisTemplate redisTemplate = RedisClient.getRedisTemplate();
-        // 设置短信验证码有效期为1分钟（60s）
-        redisTemplate.opsForValue().set("smscode",code,1, TimeUnit.MINUTES);
+        // 设置短信验证码有效期为5分钟（300s）
+        redisTemplate.opsForValue().set("smscode",code,5, TimeUnit.MINUTES);
 
     }
 

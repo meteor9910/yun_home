@@ -75,8 +75,10 @@ private RoomMapper roomMapper;
 
     }
 
-
-
+    @Override
+    public List<RoomImg> findByRoomId(Integer id) {
+        return roomImgMapper.findByRoomId(id);
+    }
 
 
     @Override

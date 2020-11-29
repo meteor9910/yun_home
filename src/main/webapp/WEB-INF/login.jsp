@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
 <script src="${pageContext.request.contextPath}/js/jquery-3.4.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
+<%--<script src="${pageContext.request.contextPath}/css/login.css"/>--%>
 </head>
 <body>
 	<div class="qiqiu1 qiqiu">
@@ -35,7 +36,7 @@
 
 <div class="login">
 	 <h1>用户登录</h1>
-	<div class="error_msg" style="margin-left: 90px;color: #ff0000;}"><label class="msgColor">${loginError_msg}</label></div>
+	<div class="error_msg" style="margin-left: 90px;color:red;}"><label class="msgColor">${loginError_msg}</label></div>
 		<form class="form-horizontal" action="${pageContext.request.contextPath}/user/login" method="post">
 			<div class="form-group">
 				<label for="username" class="col-sm-3 control-label">用户名</label>
@@ -53,7 +54,7 @@
 				<div class="col-sm-offset-2 col-sm-10">
 					<div class="checkbox">
 						<label>
-							<input type="checkbox"> Remember me
+							<input type="checkbox"> 记住我
 						</label>
 					</div>
 				</div>
@@ -65,6 +66,8 @@
 			</div>
 		</form>
 	</div>
+
+
 
 </body>
 

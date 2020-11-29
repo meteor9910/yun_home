@@ -1,9 +1,11 @@
-package com.hopu.web.controller.admin;
-
+package com.hopu.web.controller;
 
 import com.hopu.pojo.User;
+
 import com.hopu.service.UserService;
+import com.hopu.utils.RedisClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,11 +19,10 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
-
-    //跳转到用户界面
+    // 跳转到用户注册页面
     @RequestMapping("/toRegisterPage")
     public String toRegisterPage(){
-        //相应到用户界面
+        // 响应到用户列表页面
         return "register";
     }
 
@@ -39,33 +40,38 @@ public class LoginController {
         }
     }
 
-    @RequestMapping("/checkUserName")
-    @ResponseBody
-    public String checkUserName(String userName) {
-        User user = userService.findByUserName(userName);
-        if (user == null) {
-            return "0";
-            // 代表当前用户名未被注册
-
-        }else {
-            return "1";
-            //代表当前用户注册了
-        }
-
-    }
-
-    //发送手机验证码
-    @RequestMapping("sendSMSCode")
-    public  void  sendSMSCode(String telephone) {
+    // 发送手机短信验证码
+    @RequestMapping("/sendSMSCode")
+    public void sendSMSCode(String telephone) {
         try {
             userService.sendSMSCode(telephone);
             // 暂时把生成的验证码放在sesion域对象,后期会使用redis
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("验证码发送失败");
+            System.out.println("验证码发送失败！");
         }
-
     }
+
+
+    /**
+     * 手机验证码校验
+     */
+    @RequestMapping("/checkCode")
+    @ResponseBody
+    public String checkCode(String smsCode) {
+        RedisTemplate redisTemplate = RedisClient.getRedisTemplate();
+        Object o = redisTemplate.opsForValue().get("smscode");
+        if(o==null){
+            return "验证码过期";  // 表示验证码过期
+        }else {
+            if(smsCode.equals(o)){
+                return "ok";  // 表示验证码没有问题
+            }else {
+                return "验证码错误";  // 表示验证码错误
+            }
+        }
+    }
+
 
     // 跳转到用户登录
     @RequestMapping("/toLoginPage")
@@ -76,7 +82,7 @@ public class LoginController {
 
     // 用户登录
     @RequestMapping("/login")
-    public String login(User user, Model model, HttpServletRequest request){
+    public String login(User user, Model model,HttpServletRequest request){
         User user1 =userService.login(user);
         if(user1!=null){
             request.getSession().setAttribute("loginUser",user1);
@@ -86,6 +92,18 @@ public class LoginController {
             return "login";
         }
     }
+    // 用户异步登录
+    @RequestMapping("/asyncLogin")
+    @ResponseBody
+    public String asyncLogin(User user, Model model,HttpServletRequest request){
+        User user1 =userService.login(user);
+        if(user1!=null){
+            request.getSession().setAttribute("loginUser",user1);
+            return user1.getUsername();
+        }else{
+            return "-1";
+        }
+    }
 
     // 用户退出
     @RequestMapping("/logout")
@@ -93,9 +111,5 @@ public class LoginController {
         request.getSession().removeAttribute("loginUser");
         return "redirect:/index.jsp";
     }
-
-
-
-
 
 }

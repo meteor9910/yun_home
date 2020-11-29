@@ -22,6 +22,7 @@ public class Message {
 
             "cn-hangzhou",// API支持的地域ID，如短信API的值为：cn-hangzhou。
             "LTAI4Fyn5DrKbZ6XeHB1wUY4",// 您的AccessKey ID。
+
             "bv80k7z9Pkxns276etDEJsj5uen6io");// 您的AccessKey Secret。
     private IAcsClient client = new DefaultAcsClient(profile);
 
@@ -122,6 +123,12 @@ public class Message {
         //log_print("querySendDetails", response.getData());
         return data;
     }
+
+//    public static void main(String[] args) throws ClientException {
+//        Message message = new Message();
+//        String s = message.sendSms("16602705424");
+//        System.out.println(s);
+//    }
 
 
 

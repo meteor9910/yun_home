@@ -1,23 +1,10 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
-    <script src="${pageContext.request.contextPath}/js/jquery-3.4.1.min.js"></script>
-    <script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
-
-
-    <title>云租房+-首页</title>
-
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css"/>
+    <title>Title</title>
 </head>
 <body>
-
-<%-- 1、头部导航--%>
 <div id="commonTopbar" class="commonTopbar" style="min-width: 1190px;">
     <div class="w pos">
         <div class="bar_left"><h2>武汉</h2> <span id="commonTopbar_ipconfig">[<a
@@ -35,18 +22,22 @@
             </div>
         </div>
         <div class="bar_right">
+              <span id="login-info">
             <c:if test="${empty loginUser}">
                 <div id="commonTopbar_login">
-                    <a href="${pageContext.request.contextPath}/user/toLoginPage" target="_self" tongji_tag="pc_topbar_log_login">登录</a><span class="gap">|</span>
+                    <a href="${pageContext.request.contextPath}/user/toLoginPage"
+                       target="_self" tongji_tag="pc_topbar_log_login">登录</a><span class="gap">|</span>
                     <a href="${pageContext.request.contextPath}/user/toRegisterPage" >注册</a>
                 </div>
             </c:if>
-            <c:if test="${!empty loginUser}">
+            <c:if test="${not empty loginUser}">
                 <div id="commonTopbar_login">
-                    <a href="javascript:void(0)" target="_self" tongji_tag="pc_topbar_log_login">${loginUser.username}</a><span class="gap">|</span>
+                    <a href="javascript:void(0)"
+                       target="_self" tongji_tag="pc_topbar_log_login">${loginUser.username}</a><span class="gap">|</span>
                     <a href="${pageContext.request.contextPath}/user/logout" >退出</a>
                 </div>
             </c:if>
+                </span>
             <div id="commonTopbar_mymenu" class="haschild"><a id="commonTopbar_tomy" target="_blank"
                                                               href="javascript:void(0)"
                                                               tongji_tag="pc_topbar_log_my">个人中心</a><span
@@ -61,7 +52,7 @@
             <div id="commonTopbar_vip" class="haschild"><a class="mytxt" href=""
                                                            target="_blank">商家中心</a><span class="arrow"></span><span
                     class="mark"></span>
-                <div class="hc"><a id="commonTopbar_tomypost" href="${pageContext.request.contextPath}/admin/"
+                <div class="hc"><a id="commonTopbar_tomypost" href=""
                                    target="_blank" tongji_tag="pc_topbar_log_my_post">我的发布</a><a
                         href="javascript:void(0)" target="_blank">账户资料</a><a
                         href="javascript:void(0)" target="_blank">我的资金</a></div>
@@ -117,75 +108,5 @@
         </div>
     </div>
 </div>
-<%-- 2、轮播图--%>
-<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-    </ol>
-
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <img src="index/img/1.jpg" alt="">
-            <div class="carousel-caption">
-            </div>
-        </div>
-        <div class="item">
-            <img src="index/img/2.jpg" alt="">
-            <div class="carousel-caption">
-            </div>
-        </div>
-        <div class="item">
-            <img src="index/img/3.jpg" alt="">
-            <div class="carousel-caption">
-            </div>
-        </div>
-    </div>
-
-    <!-- Controls -->
-    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-</div>
-
-<%--  3、尾部--%>
-<div id="commonFooter" class="commonFooter">
-    <div class="upWrap">
-        <a target="_blank"  href="javascript:void(0)" rel="nofollow">常见问题</a><span>|</span>
-        <a target="_blank"  href="javascript:void(0)" rel="nofollow">帮助中心</a><span>|</span>
-        <a  target="_blank" href="javascript:void(0)" rel="nofollow">意见反馈</a><span>|</span>
-        <a target="_blank" href="javascript:void(0)" rel="nofollow">了解厚溥云租房</a><span>|</span><a
-            target="_blank" href="javascript:void(0)" rel="nofollow">加入厚溥云租房</a><span>|</span>
-        <a target="_blank"   href="javascript:void(0)" rel="nofollow">反欺诈联盟</a><span>|</span>
-        <a target="_blank" href="javascript:void(0)" rel="nofollow">报案平台</a><span>|</span>
-        <a target="_blank"  href="javascript:void(0)"  rel="nofollow">推广服务</a><span>|</span>
-        <a target="_blank" href="javascript:void(0)" rel="nofollow">渠道招商</a><span>|</span>
-        <a target="_blank"  href="javascript:void(0)"   rel="nofollow">维权中心</a><span>|</span>
-        <a target="_blank" href="javascript:void(0)" rel="nofollow">Investor Relations</a>
-    </div>
-    <div class="downWrap">
-        <div><em>2006-2021 myhopu.com版权所有</em><span>|</span><a target="_blank"
-                                                               href="javascript:void(0)"
-                                                               rel="nofollow">鄂ICP备11005077号-1</a><span>|</span>
-            <a target="_blank" href="javascript:void(0)">联系我们</a></div>
-        <div>
-            <a target="_blank"
-               href="javascript:void(0)">人力资源服务许可证</a><span>|</span>
-            <a target="_blank" href="javascript:void(0)"
-               rel="nofollow">互联网药品信息服务资格证</a><span>|</span>
-            <a target="_blank"  href="javascript:void(0)"  rel="nofollow">广播电视节目制作经营许可证</a>
-
-        </div>
-    </div>
-</div>
-
 </body>
 </html>

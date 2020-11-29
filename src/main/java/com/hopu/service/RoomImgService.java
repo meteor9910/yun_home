@@ -18,6 +18,8 @@ public interface RoomImgService {
 
     void delete(Integer id);
 
+    List<RoomImg> findByRoomId(Integer id);
+
 
 
 

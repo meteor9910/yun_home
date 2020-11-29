@@ -113,7 +113,7 @@ body {
 .yun2 {
 	width: 605px;
 	height: 253px;
-	background: url(../../../img/login/login1/yun2.png) no-repeat center center;
+	background: url(../../../img/login/login1/yun1.png) no-repeat center center;
 	left: 180px;
 	top: 249px;
 	animation: myfirst7 50s linear infinite;
@@ -159,10 +159,10 @@ body {
 }
 
 .login {
-	height: 280px;
+	height: 340px;
 	width: 360px;
 	padding: 20px;
-	background-color: #2196F3;
+	background-color: white;
 	border-radius: 4px;
 	position: absolute;
 	left: 50%;

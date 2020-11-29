@@ -216,6 +216,8 @@
             $("#registerForm").submit();
         }
     }
+
+
 </script>
 </body>
 </html>

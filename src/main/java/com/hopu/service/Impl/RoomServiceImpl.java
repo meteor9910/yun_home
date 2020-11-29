@@ -94,5 +94,36 @@ public class RoomServiceImpl implements RoomService {
         roomMapper.updateRoom(id,rentStatus);
     }
 
+    @Override
+    public PageInfo<Room> findPageFront(Integer pageNum, Integer pageSize, Integer regionId, String rent) {
+       PageHelper.startPage(pageNum, pageSize);
+        // 前台查询房源的时候，只能查询已经上架且未出租的房源，也就是rent_status=0
+        // 先对条件进行预处理
+        int  beginRent = 0;
+        int   endRent =99999;
+
+        if(rent != null && rent !=""){
+
+            String[] rets = rent.split("_");
+            beginRent = Integer.parseInt(rets[0]);
+            endRent = Integer.parseInt(rets[1]);
+
+
+        }
+
+        if (regionId !=null && regionId == 0 ){
+            regionId = null;
+        }
+
+        List<Room> list = roomMapper.findUp(regionId,beginRent,endRent);
+        // 因为前台页面需要展示一个图片，所以还要查询对应的图片信息
+        list.forEach(room -> {
+            List<RoomImg> roomImgList = roomImgMapper.findByRoomId(room.getId());
+            room.setRoomImgList(roomImgList);
+        });
+        return new PageInfo<>(list,5);
+
+    }
+
 
 }

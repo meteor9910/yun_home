@@ -24,6 +24,7 @@ public class Room  implements Serializable {
     private Integer rentStatus;  // 房屋出租状态。0：待出租；1：已出租；-1：未审核
     private Integer rentUserId;  // 房屋租户id，null表示还未出租
 
+
     private User user;
     private User rentUser;
     private Region region;
@@ -204,4 +205,6 @@ public class Room  implements Serializable {
                 ", roomImgList=" + roomImgList +
                 '}';
     }
+
+
 }

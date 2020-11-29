@@ -11,4 +11,7 @@ public interface RegionMapper {
 
     @Select("SELECT * FROM t_region")
     List<Region> findAll();
+
+    @Select("select * from t_region where id =#{regionId}")
+    Region findById(Integer regionId);
 }

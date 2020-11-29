@@ -4,8 +4,31 @@
   <select id="findAll" resultMap="roomWithUser">
     select * from t_room
   </select>
+    <select id="findUp" resultType="com.hopu.pojo.Room">
+      select * from t_room
+      <where>
+        <if test="regionId !=null">
+          region_id =#{regionId}
+        </if>
+        <if test="beginRent !=null and endRent!=null">
+          and rent between #{beginRent} and #{endRent}
+        </if>
+        and  rent_status =0
+      </where>
+    </select>
+    <select id="findAllByIds" resultType="com.hopu.pojo.Room">
+      select * from t_room
+      <where>
+        id in
+        <foreach collection="list" open="(" separator="," close=")" item="id">
+          #{id}
+        </foreach>
+      </where>
+    </select>
 
-  <resultMap id="roomWithUser" type="room">
+
+
+    <resultMap id="roomWithUser" type="room">
     <!-- 其他的自动映射 -->
     <association property="user" column="user_id" select="com.hopu.mapper.UserMapper.findById" />
   </resultMap>
