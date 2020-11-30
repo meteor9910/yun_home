@@ -15,9 +15,9 @@ import java.util.Date;
 
 public class SmsUtil {
 
-    private static String accessKeyId = "LTAI4Fyn5DrKbZ6XeHB1wUY4";//需要替换成自己申请的accessKeyId
+    private static String accessKeyId = "*******";//需要替换成自己申请的accessKeyId
 
-    private static String accessKeySecret = "bv80k7z9Pkxns276etDEJsj5uen6io";//需要替换成自己申请的accessKeySecret
+    private static String accessKeySecret = "**********";//需要替换成自己申请的accessKeySecret
 
     static final String product = "Dysmsapi";//产品名称:云通信短信API产品,开发者无需替换
 
