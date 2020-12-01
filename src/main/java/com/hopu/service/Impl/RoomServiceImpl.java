@@ -1,12 +1,17 @@
 package com.hopu.service.Impl;
 
+
+//import com.aliyuncs.utils.StringUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.hopu.mapper.FavoriteMapper;
 import com.hopu.mapper.RoomImgMapper;
+import com.hopu.pojo.Favorite;
 import com.hopu.pojo.Room;
 import com.hopu.mapper.RoomMapper;
 import com.hopu.pojo.RoomImg;
 import com.hopu.service.RoomService;
+import com.mysql.cj.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +21,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -25,6 +31,8 @@ public class RoomServiceImpl implements RoomService {
     private RoomMapper roomMapper;
     @Autowired
     private RoomImgMapper roomImgMapper;
+    @Autowired
+    private FavoriteMapper favoriteMapper;
 
     @Override
     public PageInfo<Room> findPage(Integer index, Integer size) {
@@ -32,6 +40,8 @@ public class RoomServiceImpl implements RoomService {
         List<Room> List = roomMapper.findAll();
         return new PageInfo<>(List);
     }
+
+
 
     @Override
     public void add(Room room, MultipartFile[] uploadfiles) {
@@ -123,6 +133,26 @@ public class RoomServiceImpl implements RoomService {
         });
         return new PageInfo<>(list,5);
 
+    }
+
+    @Override
+    public PageInfo<Room> findFavoriteByPage(Integer pageNum, Integer pageSize, Integer userId) {
+        //先查出来当前用户的登录信息
+        List<Favorite> favoriteList = favoriteMapper.findByUserId(userId);
+        List<Integer> roomIdList  = favoriteList.stream().map(favorite -> favorite.getRoomId()).collect(Collectors.toList());
+        //非空判断
+        if (roomIdList == null || roomIdList.size() <= 0){
+            return null;
+        }
+        PageHelper.startPage(pageNum, pageSize);
+
+        List<Room> list = roomMapper.findAllByIds(roomIdList);
+        //查询图片
+        list.forEach(room -> {
+            List<RoomImg> roomImgList = roomImgMapper.findByRoomId(room.getId());
+            room.setRoomImgList(roomImgList);
+        });
+        return new PageInfo<>(list);
     }
 
 

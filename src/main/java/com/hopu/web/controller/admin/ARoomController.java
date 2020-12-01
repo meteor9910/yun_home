@@ -3,6 +3,7 @@ package com.hopu.web.controller.admin;
 
 import com.github.pagehelper.PageInfo;
 import com.hopu.pojo.Room;
+import com.hopu.pojo.User;
 import com.hopu.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,13 @@ public class ARoomController {
     public  String findAll(@RequestParam(defaultValue = "1") Integer pageNum,
                            @RequestParam(defaultValue = "10") Integer pageSize,
                            HttpServletRequest request) {
+        // todo 只能查看自己发发布的房源信息（管理员除外）
+        User loginUser = (User) request.getSession().getAttribute("loginUser");
+        Integer userId = loginUser.getId();
+        if("管理员".equals(loginUser.getRole())){
+            userId = null;
+
+        }
         PageInfo<Room> pageInfo = roomService.findPage(pageNum, pageSize);
         request.setAttribute("page",pageInfo);
         return "admin/system/room/room_list";
@@ -42,10 +50,12 @@ public class ARoomController {
 //    添加房源信息
 
    @RequestMapping("/add")
-    public String add(Room room , MultipartFile[] roomImgs) throws IOException {
+    public String add(Room room , MultipartFile[] roomImgs,HttpServletRequest request) throws IOException {
         //设置发布房源当前用户
-       room.setUserId(3);
+//       room.setUserId(3);
        // todo 后续需要修改为从session域中获取当前登录用户信息
+       User loginUser = (User) request.getSession().getAttribute("loginUser");
+       room.setUserId(loginUser.getId());
 
        room.setRentStatus(-1);
        roomService.add(room,roomImgs);

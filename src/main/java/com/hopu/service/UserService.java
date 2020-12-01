@@ -20,4 +20,7 @@ public interface UserService {
     User findByUserName(String userName);
 
     User login(User user);
+
+
+    User findUserByNameAndPWD(String username, String password);
 }

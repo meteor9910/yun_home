@@ -64,4 +64,7 @@ public class AUserController {
         return "redirect:/admin/user/list";
     }
 
+
+
+
 }

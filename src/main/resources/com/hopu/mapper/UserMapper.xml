@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hopu.mapper.UserMapper">
+
+
   <insert id="save" parameterType="user">
     insert INTO t_user(username, password, nick_name,phone,role,email,gender,portrait,age,create_time,update_time)
     VALUES (#{username},#{password},#{nickName},#{phone},#{role},#{email},#{gender},#{portrait},#{age},#{createTime},#{updateTime})
@@ -30,4 +32,6 @@
     </set>
     where id=#{id}
   </update>
+
+
 </mapper>

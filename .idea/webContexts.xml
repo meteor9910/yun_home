@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebContextManager">
+    <option name="state">
+      <map>
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/admin/common/page.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/admin/common" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/admin/system/roomImg/roomImg_update.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/admin/system/roomImg" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/front/room_details.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/front" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/front/room_list.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/front" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/login.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/common/header.jsp" value="file://$PROJECT_DIR$/src/main/webapp/common" />
+      </map>
+    </option>
+  </component>
+</project>

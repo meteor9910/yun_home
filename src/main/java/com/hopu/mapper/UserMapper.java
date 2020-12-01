@@ -32,4 +32,6 @@ public interface UserMapper {
 
     @Select("select * from t_user where username =#{username}")
     User findByUserName(String username);
+
+
 }

@@ -36,4 +36,14 @@
         <property name="maxUploadSize" value="10240000"/>
 
     </bean>
+
+  <mvc:interceptors>
+      <mvc:interceptor>
+          <mvc:mapping path="/admin/**"/>
+          <mvc:mapping path="/front/favorite/**"/>
+          <mvc:mapping path="/front/room/cancleFavorite"/>
+          <mvc:mapping path="/front/room/addFavorite"/>
+          <bean class="com.hopu.web.interceptor.LoginInterceptor"/>
+      </mvc:interceptor>
+  </mvc:interceptors>
 </beans>

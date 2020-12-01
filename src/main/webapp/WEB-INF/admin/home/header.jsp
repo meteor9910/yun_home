@@ -211,7 +211,7 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="/img/user-logo.png" class="user-image" alt="User Image">
-                        <span class="hidden-xs"> ${sessionScope.loginUser.userName}</span>
+                        <span class="hidden-xs"> ${sessionScope.loginUser.username}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
@@ -219,7 +219,7 @@
                             <img src="/img/user-logo.png" class="img-circle" alt="User Image">
 
                             <p>
-                                ${sessionScope.loginUser.userName}
+                                ${sessionScope.loginUser.username}
                             </p>
                         </li>
                         <!-- Menu Body

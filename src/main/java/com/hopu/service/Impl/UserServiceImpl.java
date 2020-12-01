@@ -9,6 +9,7 @@ import com.hopu.service.UserService;
 import com.hopu.utils.MD5Util;
 import com.hopu.utils.RedisClient;
 import com.hopu.utils.SmsUtil;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -19,11 +20,16 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author Tomotake Yoshino
+ */
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private UserService userService;
 
     @Override
     public PageInfo<User> findPage(Integer pageNum, Integer pageSize) {
@@ -63,7 +69,7 @@ public class UserServiceImpl implements UserService {
     public  void  sendSMSCode(String telephone){
         // 1、先生成6位的随机验证码
         StringBuffer stringBuffer = new StringBuffer();
-        for (int i = 0; i < 6;i++){
+        for (int i = 0; i <6;i++){
             stringBuffer.append(new Random().nextInt(9)+1);
         }
         String code = stringBuffer.toString();
@@ -87,6 +93,15 @@ public class UserServiceImpl implements UserService {
         String password = user.getPassword();
         password = MD5Util.encodeByMd5(password);
         User user1 = userMapper.findUserByNameAndPWD(user.getUsername(),password);
+        return user1;
+    }
+
+    @Override
+    public User findUserByNameAndPWD(@Param("username") String username,@Param("pwd") String pwd) {
+
+        String password =pwd;
+        password = MD5Util.encodeByMd5(password);
+        User user1 = userMapper.findUserByNameAndPWD(username,password);
         return user1;
     }
 

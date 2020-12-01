@@ -65,156 +65,81 @@
         </div>
         <div class="list-box">
             <ul class="house-list" style="width: 100%;">
-                <li class="house-cell">
-                    <div class="img-list">
-                        <a href="">
-                            <img src="https://pic2.58cdn.com.cn/anjuke_58/68c1bb9b26a38ef833fb728c370478c9">
-                        </a>
-                    </div>
-                    <div class="des">
-                        <h2>
-                            <a href="https://pic2.58cdn.com.cn/anjuke_58/68c1bb9b26a38ef833fb728c370478c9"
-                               class="strongbox"
-                               style="color: #333"
-                               tongji_label="listclick"
-                               onclick="clickLog('from= fcpc_zflist_gzcount ');"
-                               target="_blank" rel="nofollow">
-                                单间 | 免租1个月 可短租 加州香山美树 软件园 武大科 </a>
-                        </h2>
-                        <p class="room">主卧(室) &nbsp;&nbsp;&nbsp;&nbsp;1.96㎡
-                        </p>
-                        <p class="infor">
-                            <a href=""
-                               onClick="clickLog('from=fcpc_list_wh_biaoti_shangquan')">光谷软件园</a>
-                            &nbsp;&nbsp;
-                            <a href=""
-                               target="_blank"
-                               onClick="clickLog('from=fcpc_list_wh_biaoti_xiaoqu')">加州香山美树</a>
-                        </p>
-                        <div class="jjr">
-                            来自经纪人: <span class=" jjr_par">
+                <c:forEach items="${page.list}" var="room">
+                    <li class="house-cell">
+                        <div class="img-list">
+                            <a href="${pageContext.request.contextPath}/front/room/toRoomDetails?id=${room.id}">
+                                <img src="http://localhost/${room.roomImgList[0].img}">
+                            </a>
+                        </div>
+                        <div class="des">
+                            <h2>
+                                <a href="${pageContext.request.contextPath}/front/room/toRoomDetails?id=${room.id}"
+                                   class="strongbox"
+                                   style="color: #333"
+                                   tongji_label="listclick"
+                                   onclick="clickLog('from= fcpc_zflist_gzcount ');"
+                                   target="_blank" rel="nofollow">
+                                        ${room.title}</a>
+                            </h2>
+                            <p class="room">主卧(室) &nbsp;&nbsp;&nbsp;&nbsp;${room.area}㎡
+                            </p>
+                            <p class="infor">
+                                <a href=""
+                                   onClick="clickLog('from=fcpc_list_wh_biaoti_shangquan')">${room.address}</a>
+                                &nbsp;&nbsp;
+                                <a href=""
+                                   target="_blank"
+                                   onClick="clickLog('from=fcpc_list_wh_biaoti_xiaoqu')">${room.detailAddress}</a>
+                            </p>
+                            <div class="jjr">
+                                来自经纪人: <span class=" jjr_par">
                                                     <span class="jjr_par_dp" title="蛋壳（武汉）公寓管理有限公司">
                                 武汉蛋壳公寓                            </span>
                                                     <span class="listjjr">
                                                                 彭章豹                                                                </span>
-                            <!-- 新增结构 -->
-                            <!-- 新增结构end -->
+                                <!-- 新增结构 -->
+                                <!-- 新增结构end -->
                         </span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="list-li-right">
-                        <div class="send-time">
-                            2020-09-27 10:49
+                        <div class="list-li-right">
+                            <div class="send-time">
+                                2020-09-27 10:49
+                            </div>
+                            <div class="money">
+                                <b class="strongbox">${room.rent}</b>元/月
+                            </div>
                         </div>
-                        <div class="money">
-                            <b class="strongbox">960</b>元/月
-                        </div>
-                    </div>
-                </li>
-                <li class="house-cell">
-                    <div class="img-list">
-                        <a href="">
-                            <img src="https://pic2.58cdn.com.cn/anjuke_58/68c1bb9b26a38ef833fb728c370478c9">
-                        </a>
-                    </div>
-                    <div class="des">
-                        <h2>
-                            <a href="https://pic2.58cdn.com.cn/anjuke_58/68c1bb9b26a38ef833fb728c370478c9"
-                               class="strongbox"
-                               style="color: #333"
-                               tongji_label="listclick"
-                               onclick="clickLog('from= fcpc_zflist_gzcount ');"
-                               target="_blank" rel="nofollow">
-                                单间 | 免租1个月 可短租 加州香山美树 软件园 武大科 </a>
-                        </h2>
-                        <p class="room">主卧(室) &nbsp;&nbsp;&nbsp;&nbsp;1.96㎡
-                        </p>
-                        <p class="infor">
-                            <a href=""
-                               onClick="clickLog('from=fcpc_list_wh_biaoti_shangquan')">光谷软件园</a>
-                            &nbsp;&nbsp;
-                            <a href=""
-                               target="_blank"
-                               onClick="clickLog('from=fcpc_list_wh_biaoti_xiaoqu')">加州香山美树</a>
-                        </p>
-                        <div class="jjr">
-                            来自经纪人: <span class=" jjr_par">
-                                                    <span class="jjr_par_dp" title="蛋壳（武汉）公寓管理有限公司">
-                                武汉蛋壳公寓                            </span>
-                                                    <span class="listjjr">
-                                                                彭章豹                                                                </span>
-                            <!-- 新增结构 -->
-                            <!-- 新增结构end -->
-                        </span>
-                        </div>
-                    </div>
-                    <div class="list-li-right">
-                        <div class="send-time">
-                            2020-09-27 10:49
-                        </div>
-                        <div class="money">
-                            <b class="strongbox">960</b>元/月
-                        </div>
-                    </div>
-                </li>
-                <li class="house-cell">
-                    <div class="img-list">
-                        <a href="">
-                            <img src="https://pic2.58cdn.com.cn/anjuke_58/68c1bb9b26a38ef833fb728c370478c9">
-                        </a>
-                    </div>
-                    <div class="des">
-                        <h2>
-                            <a href="https://pic2.58cdn.com.cn/anjuke_58/68c1bb9b26a38ef833fb728c370478c9"
-                               class="strongbox"
-                               style="color: #333"
-                               tongji_label="listclick"
-                               onclick="clickLog('from= fcpc_zflist_gzcount ');"
-                               target="_blank" rel="nofollow">
-                                单间 | 免租1个月 可短租 加州香山美树 软件园 武大科 </a>
-                        </h2>
-                        <p class="room">主卧(室) &nbsp;&nbsp;&nbsp;&nbsp;1.96㎡
-                        </p>
-                        <p class="infor">
-                            <a href=""
-                               onClick="clickLog('from=fcpc_list_wh_biaoti_shangquan')">光谷软件园</a>
-                            &nbsp;&nbsp;
-                            <a href=""
-                               target="_blank"
-                               onClick="clickLog('from=fcpc_list_wh_biaoti_xiaoqu')">加州香山美树</a>
-                        </p>
-                        <div class="jjr">
-                            来自经纪人: <span class=" jjr_par">
-                                                    <span class="jjr_par_dp" title="蛋壳（武汉）公寓管理有限公司">
-                                武汉蛋壳公寓                            </span>
-                                                    <span class="listjjr">
-                                                                彭章豹                                                                </span>
-                            <!-- 新增结构 -->
-                            <!-- 新增结构end -->
-                        </span>
-                        </div>
-                    </div>
-                    <div class="list-li-right">
-                        <div class="send-time">
-                            2020-09-27 10:49
-                        </div>
-                        <div class="money">
-                            <b class="strongbox">960</b>元/月
-                        </div>
-                    </div>
-                </li>
+                    </li>
+                </c:forEach>
+
                 <%--  分页--%>
-                <li id="pager_wrap">
-                    <div class="pager">
-                        <strong><span>1</span></strong><a
-                            href=""><span>2</span></a><a
-                            href=""><span></span></a>
-                        . . . <a
-                            href=""><span>70</span></a><a
-                            class="next"
-                            href=""><span>下一页</span></a>
-                    </div>
-                </li>
+                <nav aria-label="...">
+                    <ul class="pagination">
+                        <c:if test="${page.pageNum ==1}">
+                            <li class="disabled"><span><span aria-hidden="true">&nbsp;</span></span></li>
+                        </c:if>
+                        <c:if test="${page.pageNum !=1}">
+                            <li class=""><span><span aria-hidden="true">&nbsp;</span></span></li>
+                        </c:if>
+                        <c:forEach items="${page.navigatepageNums}" var="currentPage">
+                            <c:if test="${page.pageNum==currentPage}">
+                                <li class="active"><a href="${pageContext.request.contextPath}/front/favorit/list?pageNum=${currentPage}&pageSize=${pageSize}">${currentPage}</a></li>
+                            </c:if>
+                            <c:if test="${page.pageNum!=currentPage}">
+                                <li><a href="${pageContext.request.contextPath}/front/favorit/list?pageNum=${currentPage}&pageSize=${pageSize}">${currentPage}</a></li>
+                            </c:if>
+                        </c:forEach>
+                        <c:if test="${page.pageNum<page.total}">
+                            <li><a href="#" aria-label="Next"><span aria-hidden="true">&nbsp;</span></a></li>
+                        </c:if>
+                        <c:if test="${page.pageNum==page.total}">
+                            <li class="disabled"><span aria-label="Next"><span aria-hidden="true">&nbsp;</span></span></li>
+                        </c:if>
+
+                    </ul>
+                </nav>
             </ul>
 
         </div>

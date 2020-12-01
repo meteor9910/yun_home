@@ -10,8 +10,7 @@
                 <img src="/img/user-logo.png" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p> ${sessionScope.loginUser.userName}</p>
-                <a href="#">${sessionScope.loginUser.companyName}</a>
+                <p> ${sessionScope.loginUser.username}</p>
             </div>
         </div>
 

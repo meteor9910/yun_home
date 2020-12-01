@@ -20,4 +20,7 @@ public interface RoomService {
 
     //前台相关接口写法
     PageInfo<Room> findPageFront(Integer pageNum, Integer pageSize,Integer regionId,String rent);
+
+    PageInfo<Room> findFavoriteByPage(Integer pageNum, Integer pageSize, Integer id);
+
 }

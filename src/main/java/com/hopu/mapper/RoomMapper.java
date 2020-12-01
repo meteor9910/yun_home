@@ -34,4 +34,5 @@ public interface RoomMapper {
 
     List<Room> findUp(@Param("regionId") Integer regionId,@Param("beginRent") int beginRent,@Param("endRent") int endRent);
     List<Room> findAllByIds(List<Integer> roomIdList);
+
 }

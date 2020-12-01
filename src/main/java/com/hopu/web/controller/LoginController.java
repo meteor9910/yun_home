@@ -1,8 +1,10 @@
 package com.hopu.web.controller;
 
+import com.hopu.mapper.UserMapper;
 import com.hopu.pojo.User;
 
 import com.hopu.service.UserService;
+import com.hopu.utils.MD5Util;
 import com.hopu.utils.RedisClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -11,13 +13,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/user")
 public class LoginController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserMapper userMapper;
+    @Autowired
+
 
     // 跳转到用户注册页面
     @RequestMapping("/toRegisterPage")
@@ -111,5 +120,69 @@ public class LoginController {
         request.getSession().removeAttribute("loginUser");
         return "redirect:/index.jsp";
     }
+
+
+
+    @RequestMapping("/loginCustomer")
+    public String loginCustomer(HttpServletRequest request, HttpServletResponse response) {
+
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String auto_login = request.getParameter("auto_login");
+        String cookieFlag = request.getParameter("auto_login");
+        //根据用户和密码查找用户
+
+        String newPwd = MD5Util.encodeByMd5(password);
+
+//        User user = userService.findUserByNameAndPWD(username, newPwd);
+        User user = userMapper.findUserByNameAndPWD(username,newPwd);
+
+        //判断是否有该用户
+        if(user!=null) {
+            if("on".equals(auto_login)) {
+                //把用户名和密码放入cookie返回给客户端
+                Cookie cookie =new Cookie("auto_login", username+"+"+password);
+                //设置7天有效期
+                cookie.setMaxAge(60*60*24*7);
+                //设置有效路径
+                cookie.setPath(request.getContextPath());
+                //response把cookie返回给客户端
+                response.addCookie(cookie);
+            }
+            //把user存放在session中
+            HttpSession session = request.getSession();
+            session.setAttribute("loginUser", user);
+
+
+//            if ("1".equals(cookieFlag)) {
+//                String loginInfo = username + "," + password;
+//                Cookie userCookie = new Cookie("loginInfo", loginInfo);
+//                userCookie.setMaxAge(1 * 24 * 60 * 60); // 存活期为一天 1*24*60*60
+//                userCookie.setPath("/");
+//                request.addCookie(userCookie);
+//            }
+
+            //进入登录后的页面
+            return "redirect:/index.jsp";
+
+        }
+        else {
+            return "forward:login";
+        }
+
+
+
+
+
+
+
+
+
+    }
+
+
+
+
+
 
 }

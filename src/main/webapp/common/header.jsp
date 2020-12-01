@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="bar_right">
-              <span id="login-info">
+             <span id="login-info">
             <c:if test="${empty loginUser}">
                 <div id="commonTopbar_login">
                     <a href="${pageContext.request.contextPath}/user/toLoginPage"
@@ -37,19 +37,17 @@
                     <a href="${pageContext.request.contextPath}/user/logout" >退出</a>
                 </div>
             </c:if>
-                </span>
-            <div id="commonTopbar_mymenu" class="haschild"><a id="commonTopbar_tomy" target="_blank"
-                                                              href="javascript:void(0)"
-                                                              tongji_tag="pc_topbar_log_my">个人中心</a><span
-                    class="arrow"></span><span class="mark"></span>
-                <div class="hc" id="commonTopbar_loginbox"><a id="dd" href="javascript:void(0)"
-                                                              target="_blank" tongji_tag="pc_topbar_log_my_account">我的账户</a><a
-                        id="" href="" target="_blank"
-                        tongji_tag="pc_topbar_log_my_account">我的浏览</a><a
-                        id="commonTopbar_tohelp" href="javascript:void(0)"
-                        target="_blank" tongji_tag="">举报中心</a></div>
+             </span>
+            <div id="commonTopbar_mymenu" class="haschild">
+                <a id="commonTopbar_tomy" target="_blank" href="javascript:void(0)" tongji_tag="pc_topbar_log_my">个人中心</a>
+                <span class="arrow"></span><span class="mark"></span>
+                <div class="hc" id="commonTopbar_loginbox">
+                    <a id="dd" href="javascript:void(0)" target="_blank" tongji_tag="pc_topbar_log_my_account">我的账户</a>
+                    <a id="" href="${pageContext.request.contextPath}/front/favorite/list" target="_blank" tongji_tag="pc_topbar_log_my_account">我的收藏</a>
+                    <a id="commonTopbar_tohelp" href="javascript:void(0)" target="_blank" tongji_tag="">举报中心</a>
+                </div>
             </div>
-            <div id="commonTopbar_vip" class="haschild"><a class="mytxt" href=""
+            <div id="commonTopbar_vip" class="haschild"><a class="mytxt" href="${pageContext.request.contextPath}/admin/toIndexPage"
                                                            target="_blank">商家中心</a><span class="arrow"></span><span
                     class="mark"></span>
                 <div class="hc"><a id="commonTopbar_tomypost" href=""
@@ -108,5 +106,15 @@
         </div>
     </div>
 </div>
+<script>
+    // 个人中心，鼠标移入和移除事件
+    $("#commonTopbar_mymenu").mouseover(function(){
+        $("#commonTopbar_mymenu").addClass("hover");
+        $("#commonTopbar_loginbox").css("display","block");
+    });
+    $("#commonTopbar_mymenu").mouseout(function(){
+        $("#commonTopbar_loginbox").css("display","none");
+    });
+</script>
 </body>
 </html>

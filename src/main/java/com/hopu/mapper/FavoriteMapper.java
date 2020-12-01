@@ -23,4 +23,6 @@ public interface FavoriteMapper {
 
     @Select("select * from t_favorites where user_id =#{userId}")
     List<Favorite> findByUserId(Integer userId);
+
+
 }
