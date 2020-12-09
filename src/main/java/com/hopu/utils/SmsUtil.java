@@ -29,9 +29,7 @@ public class SmsUtil {
      * @param phoneNumbers 手机号
      * @param code         验证码
      */
-    public static void sendSms(String phoneNumbers, String code) {
-        sendSms(phoneNumbers, "厚浦云租房", "SMS_205458698", "{\"code\":\"" + code + "\"}");
-    }
+   
 
     /**
      * 发送短信
